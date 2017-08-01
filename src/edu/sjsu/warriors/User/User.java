@@ -7,19 +7,20 @@ public abstract class User {
     //preethi
     protected String _name;
     protected String _phoneNumber;
-    protected String _email;
     protected String _id;
     //stephen
     protected String _userID;
-    protected String _userFirstName;
-    protected String _userLastName;
+    protected String _email;
+    protected String _phone;
     protected String _pwd;
+    protected String _role;
     protected AAA _AAA;
 
     public abstract void signup();
     public abstract void login();
 
-    public User() {
+
+    User() {
         _AAA = AAA.getInstance();
     }
 
@@ -31,20 +32,20 @@ public abstract class User {
         this._userID = userID;
     }
 
-    public String getUserFirstName() {
-        return _userFirstName;
+    public String getUserEmail() {
+        return _email;
     }
 
-    public void setUserFirstName(String userFirstName) {
-        this._userFirstName = userFirstName;
+    public void setUserEmail(String userEmail) {
+        this._email = userEmail;
     }
 
-    public String getUserLastName() {
-        return _userLastName;
+    public String getUserPhone() {
+        return _phone;
     }
 
-    public void setUserLastName(String userLastName) {
-        this._userLastName = userLastName;
+    public void setUserPhone(String userPhone) {
+        this._phone = userPhone;
     }
 
     public String getPwd() {
@@ -53,6 +54,14 @@ public abstract class User {
 
     public void setPwd(String pwd) {
         this._pwd = pwd;
+    }
+
+    public String getRole() {
+        return _role;
+    }
+
+    public void setRole(String role) {
+        this._role = role;
     }
 
     //preethi

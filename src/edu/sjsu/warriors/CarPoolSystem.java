@@ -1,9 +1,14 @@
 package edu.sjsu.warriors;
 
+import edu.sjsu.warriors.AAA.AAA;
 import edu.sjsu.warriors.User.Driver;
 import edu.sjsu.warriors.Report.DriverReport;
 import edu.sjsu.warriors.Report.Report;
 import edu.sjsu.warriors.Report.VehicleReport;
+import edu.sjsu.warriors.User.Creator;
+import edu.sjsu.warriors.User.DriverFactory;
+import edu.sjsu.warriors.User.PassengerFactory;
+import edu.sjsu.warriors.User.User;
 import edu.sjsu.warriors.Vehicle.*;
 import edu.sjsu.warriors.User.*;
 
@@ -19,35 +24,79 @@ public class CarPoolSystem {
     public static void main(String[] args) {
         ArrayList<Driver> DriverList = new ArrayList<>();
         ArrayList<Vehicle> vehiclesList = new ArrayList<>();
+        AAA authModule = AAA.getInstance();
         Scanner input = new Scanner(System.in);
-        while(true)
-        {
-        System.out.println("Welcome to the CMPE202");
-        System.out.println("Enter 1-Signup, 2- Login");
-        int enter_type = Integer.parseInt(input.nextLine());
-        if(enter_type==1) {
-            System.out.println("Please enter your username:");
-            String username = input.nextLine();
-            System.out.println("Please enter your email_id");
-            String emailID = input.nextLine();
-            System.out.println("Please enter your phone number");
-            String phNum = input.nextLine();
-            System.out.println("Please enter your password");
-            String password = input.nextLine();
-            System.out.println("Successful Registration\n\n");
-            System.out.println("Welcome to Carpooling app, Please Login");
-            System.out.println("Please enter your username");
-            String loginUsername = input.nextLine();
-            System.out.println("Please enter your password");
-            String loginPw = input.nextLine();
-            System.out.println("Successfully Logged in");
-        }
-        else{
-            System.out.println("Please enter your username:");
-            String username = input.nextLine();
-            System.out.println("Please enter your password:");
-            String password = input.nextLine();
-            System.out.println("Successfully Logged in");
+
+        while (true) {
+            System.out.println("Welcome to the CMPE202");
+            System.out.println("Enter 1-Signup, 2- Login");
+            int enter_type = Integer.parseInt(input.nextLine());
+            if (enter_type == 1) {
+                System.out.println("Please enter your username:");
+                String username = input.nextLine();
+                System.out.println("Please enter your email_id");
+                String emailID = input.nextLine();
+                System.out.println("Please enter your phone number");
+                String phNum = input.nextLine();
+                System.out.println("Please enter your password");
+                String password = input.nextLine();
+
+                System.out.println("Please Select Your Role: 1-Driver, 2-Passenger");
+                int role_type = Integer.parseInt(input.nextLine());
+                if (role_type == 1) {
+                    // driver
+                    Creator driverCreator = new DriverFactory();
+                    if (authModule.SignUp(driverCreator.createUser(username, emailID, phNum, password))) {
+                        System.out.println("Successful Registration\n\n");
+                        System.out.println("Welcome to Carpooling app, Please Login");
+                        System.out.println("Please enter your username");
+                        String loginUsername = input.nextLine();
+                        System.out.println("Please enter your password");
+                        String loginPw = input.nextLine();
+
+                        if (authModule.SignIn(loginUsername, loginPw)) {
+                            System.out.println("Successfully Logged in");
+                            break;
+                        } else {
+                            System.out.println("Logged in Fail");
+                        }
+                    } else {
+                        System.out.println("Register Fail!");
+                    }
+                } else if (role_type == 2) {
+                    //passenger
+                    Creator passengerCreator = new PassengerFactory();
+                    if (authModule.SignUp(passengerCreator.createUser(username, emailID, phNum, password))) {
+                        System.out.println("Successful Registration\n\n");
+                        System.out.println("Welcome to Carpooling app, Please Login");
+                        System.out.println("Please enter your username");
+                        String loginUsername = input.nextLine();
+                        System.out.println("Please enter your password");
+                        String loginPw = input.nextLine();
+
+                        if (authModule.SignIn(loginUsername, loginPw)) {
+                            System.out.println("Successfully Logged in");
+                            break;
+                        } else {
+                            System.out.println("Logged in Fail");
+                        }
+                    } else {
+                        System.out.println("Register Fail!");
+                    }
+                }
+            }
+            else {
+                System.out.println("Please enter your username:");
+                String username = input.nextLine();
+                System.out.println("Please enter your password:");
+                String password = input.nextLine();
+                if (authModule.SignIn(username, password)) {
+                    System.out.println("Successfully Logged in");
+                    break;
+                } else {
+                    System.out.println("Logged in Fail. Try Again!!");
+                }
+            }
 
         }
         System.out.println("Enter your Role: 1-Driver, 2-Passenger 3-admin");
@@ -137,7 +186,7 @@ public class CarPoolSystem {
         System.out.println("Login Successful"); */
 
 
-    }}
+    }
     private static void printOverallReport(ArrayList<Driver> DriversList,ArrayList<Vehicle> VehicleList) {
         Report report;
         if (DriversList.size() > 0) {

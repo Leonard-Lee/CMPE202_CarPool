@@ -38,7 +38,7 @@ public class AAA {
         return true;
     }
 
-    public boolean SignIn(User newUser) {
-        return (_accountMap.containsKey(newUser.getUserID()) && _accountMap.get(newUser.getUserID()).getPwd().equals(newUser.getPwd()));
+    public boolean SignIn(String userID, String pwd) {
+        return (_accountMap.containsKey(userID) && _accountMap.get(userID).getPwd().equals(pwd));
     }
 }
