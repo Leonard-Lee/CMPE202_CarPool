@@ -8,7 +8,6 @@ import edu.sjsu.warriors.Report.VehicleReport;
 import edu.sjsu.warriors.User.Creator;
 import edu.sjsu.warriors.User.DriverFactory;
 import edu.sjsu.warriors.User.PassengerFactory;
-import edu.sjsu.warriors.User.User;
 import edu.sjsu.warriors.Vehicle.*;
 import edu.sjsu.warriors.User.*;
 
