@@ -1,7 +1,7 @@
 package edu.sjsu.warriors;
 
 import edu.sjsu.warriors.AAA.AAA;
-import edu.sjsu.warriors.Membership.Driver;
+import edu.sjsu.warriors.User.Driver;
 import edu.sjsu.warriors.Report.DriverReport;
 import edu.sjsu.warriors.Report.Report;
 import edu.sjsu.warriors.Report.VehicleReport;
@@ -55,6 +55,7 @@ public class CarPoolSystem {
 
                         if (authModule.SignIn(loginUsername, loginPw)) {
                             System.out.println("Successfully Logged in");
+                            break;
                         } else {
                             System.out.println("Logged in Fail");
                         }
