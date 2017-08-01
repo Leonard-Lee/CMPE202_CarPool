@@ -14,6 +14,12 @@ public class Passenger extends User {
         }
     }
 
+
+    public void notifyusers()
+    {
+        System.out.println("SingIn for Driver:" );
+    }
+
     // Book a car
 //    public void bookCar(Administrator admin) {
 //        this._userId = "";

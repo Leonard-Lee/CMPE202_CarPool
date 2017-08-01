@@ -87,4 +87,6 @@ public abstract class User {
     public void set_id(String _id) {
         this._id = _id;
     }
+
+    abstract public void notifyusers();
 }

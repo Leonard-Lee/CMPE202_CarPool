@@ -15,6 +15,7 @@ public class Driver extends User {
         this._isAvaiable = avaiable;
     }
 
+    Admin admin = Admin.getInstance();
     //Constructor
     public Driver(String name, String phoneNumber, String email, String license, String insurance) {
         super();
@@ -24,6 +25,7 @@ public class Driver extends User {
         this._id = UUID.randomUUID().toString();
         this._license = license;
         this._insurance = insurance;
+        this.admin.attach(this);
     }
 
     public String get_license() {
@@ -45,5 +47,10 @@ public class Driver extends User {
         } else {
             System.out.println("SingIn FAIL for Driver:" + this.getUserID());
         }
+    }
+
+    public void notifyusers()
+    {
+        System.out.println("SingIn for Driver:" );
     }
 }

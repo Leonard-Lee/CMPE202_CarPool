@@ -1,6 +1,6 @@
 package edu.sjsu.warriors.Report;
 
-import edu.sjsu.warriors.Membership.Driver;
+import edu.sjsu.warriors.User.Driver;
 
 import java.util.*;
 

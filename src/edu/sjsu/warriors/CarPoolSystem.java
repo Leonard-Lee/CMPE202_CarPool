@@ -1,10 +1,11 @@
 package edu.sjsu.warriors;
 
-import edu.sjsu.warriors.Membership.Driver;
+import edu.sjsu.warriors.User.Driver;
 import edu.sjsu.warriors.Report.DriverReport;
 import edu.sjsu.warriors.Report.Report;
 import edu.sjsu.warriors.Report.VehicleReport;
 import edu.sjsu.warriors.Vehicle.*;
+import edu.sjsu.warriors.User.*;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -19,6 +20,8 @@ public class CarPoolSystem {
         ArrayList<Driver> DriverList = new ArrayList<>();
         ArrayList<Vehicle> vehiclesList = new ArrayList<>();
         Scanner input = new Scanner(System.in);
+        while(true)
+        {
         System.out.println("Welcome to the CMPE202");
         System.out.println("Enter 1-Signup, 2- Login");
         int enter_type = Integer.parseInt(input.nextLine());
@@ -47,7 +50,7 @@ public class CarPoolSystem {
             System.out.println("Successfully Logged in");
 
         }
-        System.out.println("Enter your Role: 1-Driver, 2-Passenger");
+        System.out.println("Enter your Role: 1-Driver, 2-Passenger 3-admin");
         int role_type = Integer.parseInt(input.nextLine());
         if(role_type==1) {
             System.out.println("Please enter Driver's Name:");
@@ -106,6 +109,12 @@ public class CarPoolSystem {
             System.out.println("-------------------------------------------------------------");
             printOverallReport(DriverList, vehiclesList);
         }
+        else if(role_type == 3)
+        {
+            Admin admin = Admin.getInstance();
+            admin.notifyAllObservers();
+        }
+
         else
         {
             System.out.println("Please choose options: 1-Book a Ride,2-Add a Payment method, 3-Cancel Booking, 4- Provide Feedback" );
@@ -128,7 +137,7 @@ public class CarPoolSystem {
         System.out.println("Login Successful"); */
 
 
-    }
+    }}
     private static void printOverallReport(ArrayList<Driver> DriversList,ArrayList<Vehicle> VehicleList) {
         Report report;
         if (DriversList.size() > 0) {

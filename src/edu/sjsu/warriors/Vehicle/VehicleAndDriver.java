@@ -1,7 +1,7 @@
 package edu.sjsu.warriors.Vehicle;
 
 
-import edu.sjsu.warriors.Membership.Driver;
+import edu.sjsu.warriors.User.Driver;
 
 /**
  * Created by preet on 7/29/17.
