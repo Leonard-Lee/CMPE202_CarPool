@@ -1,7 +1,11 @@
 package edu.sjsu.warriors.User;
 
+import java.util.UUID;
+
 public class Driver extends User {
     private boolean _isAvaiable;
+    private String _license;
+    private String _insurance;
 
     public boolean isAvaiable() {
         return _isAvaiable;
@@ -9,6 +13,25 @@ public class Driver extends User {
 
     public void setAvaiable(boolean avaiable) {
         this._isAvaiable = avaiable;
+    }
+
+    //Constructor
+    public Driver(String name, String phoneNumber, String email, String license, String insurance) {
+        super();
+        this._name = name;
+        this._phoneNumber = phoneNumber;
+        this._email = email;
+        this._id = UUID.randomUUID().toString();
+        this._license = license;
+        this._insurance = insurance;
+    }
+
+    public String get_license() {
+        return this._license;
+    }
+
+    public String get_insurance() {
+        return this._insurance;
     }
 
     public void signup() {
