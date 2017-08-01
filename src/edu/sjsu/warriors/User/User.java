@@ -15,6 +15,7 @@ public abstract class User {
     protected String _pwd;
     protected String _role;
     protected AAA _AAA;
+    // TODO: longitude, latitude
 
     public abstract void signup();
     public abstract void login();

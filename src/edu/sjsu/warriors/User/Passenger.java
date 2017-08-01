@@ -21,20 +21,13 @@ public class Passenger extends User {
         System.out.println("SingIn for Driver:" );
     }
 
+    // Leonard
     // Book a car
-//    public void bookCar(Administrator admin) {
-//        this._userId = "";
-//        // Administrator admin = Administrator.getInstance();
-//        // Order order = new Order(this.userID);
-//        // admin.addNewOrder(order);
-//    }
-//    // Cancel the book from Admin
-//    public void cancelOrder(Administrator admin) {
-//        // Administrator admin = Administrator.getInstance();
-//
-//        // for(Order order: admin.orders) {
-////            if(order.getUserID == userID)
-////                remove; should use iterator;
-//        //}
-//    }
+    public void bookOrder(Admin admin) {
+        admin.createOrder(this._userID);
+    }
+    // Cancel the book from Admin
+    public void cancelOrder(Admin admin) {
+       admin.cancelOrder(this._userID);
+    }
 }
