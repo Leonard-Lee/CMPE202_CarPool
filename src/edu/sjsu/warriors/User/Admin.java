@@ -5,9 +5,8 @@ import java.lang.*;
 import java.util.*;
 
 import edu.sjsu.warriors.Order.Order;
-import edu.sjsu.warriors.User.*;
 
-public  class Admin  {
+public  class Admin implements AdminProxy {
     private static Admin ourInstance;
     private List<Order> orders;
     private List<Driver> drivers;
@@ -35,10 +34,11 @@ public  class Admin  {
 
     // Create and cancel orders for passengers
     // Leonard
+    @Override
     public Order createOrder(Passenger passenger) {
         Order order = new Order(passenger.getUserID());
         int minDistance = Integer.MAX_VALUE;
-        Driver minDriver = new Driver();
+        Driver minDriver = null;
 
         for(Driver driver: drivers) {
             if(driver.isAvaiable()) {
@@ -50,17 +50,40 @@ public  class Admin  {
             }
         }
 
-        order.assignDriver(minDriver);
-        minDriver.setAvaiable(false);
-        System.out.println("Assign the closest driver => User ID: "
-                + minDriver.getUserID()
-                + ", User Name: " + minDriver.get_name());
-        orders.add(order);
-        System.out.println("User create a new order successfully");
-        return order;
+        return printResult(order, minDriver);
     }
 
+    public Order createOrder(Passenger passenger, String driverName) {
+        Order order = new Order(passenger.getUserID());
+        Driver retDriver = null;
+
+        for(Driver driver: drivers) {
+            if(driver.get_name() == driverName) {
+                retDriver = driver;
+            }
+        }
+
+        return printResult(order, retDriver);
+    }
+
+    private Order printResult(Order order, Driver driver) {
+        if(driver != null) {
+            order.assignDriver(driver);
+            driver.setAvaiable(false);
+            System.out.println("Assign the closest driver => User ID: "
+                    + driver.getUserID()
+                    + ", User Name: " + driver.get_name());
+            orders.add(order);
+            System.out.println("User create a new order successfully");
+            return order;
+        }
+        else {
+            System.out.println("Fail! User cannot create a new order");
+            return null;
+        }
+    }
     // Iterator Pattern
+    @Override
     public void cancelOrder(String userID) {
         boolean hasMatchOrder = false;
         Iterator<Order> orderIterator = orders.iterator();
