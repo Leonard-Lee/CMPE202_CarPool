@@ -15,7 +15,26 @@ public abstract class User {
     protected String _pwd;
     protected String _role;
     protected AAA _AAA;
-    // TODO: longitude, latitude
+
+    //Leonard
+    protected double _longitude;
+    protected double _latitude;
+
+    public double getLongitude() {
+        return _longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this._longitude = longitude;
+    }
+
+    public double getLatitude() {
+        return _latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this._latitude = latitude;
+    }
 
     public abstract void signup();
     public abstract void login();

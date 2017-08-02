@@ -7,7 +7,11 @@ public class Driver extends User {
     private String _license;
     private String _insurance;
 
-    Driver(String userID, String email, String phone, String pwd) {
+    public Driver() {
+        super();
+    }
+
+    public Driver(String userID, String email, String phone, String pwd) {
         _userID = userID;
         _email = email;
         _phone = phone;

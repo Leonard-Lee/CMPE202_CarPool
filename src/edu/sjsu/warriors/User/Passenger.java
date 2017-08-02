@@ -24,7 +24,7 @@ public class Passenger extends User {
     // Leonard
     // Book a car
     public void bookOrder(Admin admin) {
-        admin.createOrder(this._userID);
+        admin.createOrder(this);
     }
     // Cancel the book from Admin
     public void cancelOrder(Admin admin) {

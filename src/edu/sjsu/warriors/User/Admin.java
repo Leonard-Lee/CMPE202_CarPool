@@ -10,6 +10,7 @@ import edu.sjsu.warriors.User.*;
 public  class Admin  {
     private static Admin ourInstance = new Admin();
     private List<Order> orders;
+    private List<Driver> drivers;
     private int state;
 
     public static Admin getInstance() {
@@ -22,13 +23,24 @@ public  class Admin  {
 
     private Admin() {
         orders = new ArrayList<>();
+        drivers = new ArrayList<>();
     }
 
     // Create and cancel orders for passengers
     // Leonard
-    public void createOrder(String userID) {
-        Order order = new Order(userID);
-        //TODO: Search a driver and assign him to the order
+    public void createOrder(Passenger passenger) {
+        Order order = new Order(passenger.getUserID());
+        int minDistance = Integer.MAX_VALUE;
+        Driver minDriver = new Driver();
+
+        for(Driver driver: drivers) {
+            int dis = calculateDistance(passenger, driver);
+            if(dis < minDistance) {
+                minDriver = driver;
+            }
+        }
+
+        order.assignDriver(minDriver.getUserID());
         orders.add(order);
         System.out.println("User create a new order successfully");
     }
@@ -49,6 +61,14 @@ public  class Admin  {
         if(!hasMatchOrder) {
             System.out.println("No match order");
         }
+    }
+
+
+//    From documentation of Math.hypot:
+//    Returns: sqrt(x²+ y²) without intermediate overflow or underflow.
+    private int calculateDistance(User pass, User driver) {
+        return (int)Math.hypot(pass.getLongitude() - driver.getLongitude(),
+                pass.getLatitude() - driver.getLatitude());
     }
 
     // Rajesh
