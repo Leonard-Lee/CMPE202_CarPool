@@ -28,23 +28,32 @@ public  class Admin  {
 
     // Create and cancel orders for passengers
     // Leonard
-    public void createOrder(Passenger passenger) {
+    public Order createOrder(Passenger passenger) {
         Order order = new Order(passenger.getUserID());
         int minDistance = Integer.MAX_VALUE;
         Driver minDriver = new Driver();
 
         for(Driver driver: drivers) {
-            int dis = calculateDistance(passenger, driver);
-            if(dis < minDistance) {
-                minDriver = driver;
+            if(driver.isAvaiable()) {
+                int dis = calculateDistance(passenger, driver);
+                if(dis < minDistance) {
+                    minDistance = dis;
+                    minDriver = driver;
+                }
             }
         }
 
-        order.assignDriver(minDriver.getUserID());
+        order.assignDriver(minDriver);
+        minDriver.setAvaiable(false);
+        System.out.println("Assign the closest driver => User ID: "
+                + minDriver.getUserID()
+                + ", User Name: " + minDriver.get_name());
         orders.add(order);
         System.out.println("User create a new order successfully");
+        return order;
     }
 
+    // Iterator Pattern
     public void cancelOrder(String userID) {
         boolean hasMatchOrder = false;
         Iterator<Order> orderIterator = orders.iterator();
@@ -52,8 +61,13 @@ public  class Admin  {
             Order order = orderIterator.next();
             if(order.getUserID().equals(userID)) {
                 orders.remove(order);
+                Driver driver = order.getDriver();
+                driver.setAvaiable(true);
                 hasMatchOrder = true;
-                System.out.println("User cancel a new order successfully");
+                System.out.println("Release the driver => User ID: "
+                        + driver.getUserID()
+                        + ", User Name: " + driver.get_name());
+                System.out.println("The order is canceled or released successfully");
                 break;
             }
         }
@@ -63,6 +77,9 @@ public  class Admin  {
         }
     }
 
+    public void addDriver(Driver driver) {
+        drivers.add(driver);
+    }
 
 //    From documentation of Math.hypot:
 //    Returns: sqrt(x²+ y²) without intermediate overflow or underflow.
@@ -77,7 +94,6 @@ public  class Admin  {
         System.out.println("Accessing the details of the user datails and passenger details from data base" + uname);
 
         System.out.println("Change the Details of the " + uname);
-
 
     }
 

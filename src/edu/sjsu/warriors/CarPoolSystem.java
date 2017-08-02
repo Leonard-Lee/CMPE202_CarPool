@@ -184,6 +184,35 @@ public class CarPoolSystem {
         mainPassenger.loginfile("preethi","root");
         System.out.println("Login Successful"); */
 
+//      Leonard
+//      Test for creating an oder and cancel the order
+        Creator driverCreator = new DriverFactory();
+        User driver1 = driverCreator.createUser("driver1", "driver1@gmail.com", "408-333-456", "123");
+        driver1.set_name("John");
+        driver1.setLongitude(33.33);
+        driver1.setLongitude(35.34);
+
+        User driver2 = driverCreator.createUser("driver2", "driver2@gmail.com", "408-333-222", "1234");
+        driver2.set_name("Jack");
+        driver2.setLongitude(42.32);
+        driver2.setLongitude(66.32);
+
+        User driver3 = driverCreator.createUser("driver3", "driver3@gmail.com", "408-333-444", "1235");
+        driver3.set_name("Jason");
+        driver3.setLongitude(87.22);
+        driver3.setLongitude(103.32);
+
+        Admin admin = Admin.getInstance();
+
+        Creator passengerCreater = new PassengerFactory();
+        User passenger = passengerCreater.createUser("passenger1", "passenger1@gmail.com", "333-333-456", "1234");
+        // book a car
+        passenger.setLongitude(42.22);
+        passenger.setLongitude(66.32);
+        admin.createOrder((Passenger)passenger);
+
+        // Cancel or Release Order
+        admin.cancelOrder(passenger.getUserID());
 
     }
     private static void printOverallReport(ArrayList<Driver> DriversList,ArrayList<Vehicle> VehicleList) {

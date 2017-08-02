@@ -16,6 +16,10 @@ public class Driver extends User {
         _email = email;
         _phone = phone;
         _pwd = pwd;
+        _isAvaiable = true;
+
+        Admin admin = Admin.getInstance();
+        admin.addDriver(this);
     }
 
     public boolean isAvaiable() {
