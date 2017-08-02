@@ -8,18 +8,25 @@ import edu.sjsu.warriors.Order.Order;
 import edu.sjsu.warriors.User.*;
 
 public  class Admin  {
-    private static Admin ourInstance = new Admin();
+    private static Admin ourInstance;
     private List<Order> orders;
     private List<Driver> drivers;
     private int state;
 
+    // Singleton Pattern
+    // Double Lock
     public static Admin getInstance() {
+        if(ourInstance == null) {
+            synchronized (Admin.class) {
+                if(ourInstance == null) {
+                    ourInstance = new Admin();
+                }
+            }
+        }
         return ourInstance;
     }
 
-
-
-    private List<User> observers = new ArrayList<User>();
+    private List<User> observers = new ArrayList<>();
 
     private Admin() {
         orders = new ArrayList<>();
