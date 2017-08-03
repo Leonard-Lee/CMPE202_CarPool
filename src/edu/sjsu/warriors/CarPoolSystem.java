@@ -165,16 +165,82 @@ public class CarPoolSystem {
 //
 //        else
 //        {
-//            System.out.println("Please choose options: 1-Book a Ride,2-Add a Payment method, 3-Cancel Booking, 4- Provide Feedback" );
-//            int chose_type=Integer.parseInt(input.nextLine());
-//            if(chose_type==1)
-//            {
-//                System.out.println("Book");
-//            }
-//            else
-//            {
-//                System.out.println("Pay");
-//            }
+//             /* #######################Sandesh#############################*/
+/*            while (true) {
+        System.out.println("Please choose options: 1-Book a Ride,2-Add a Payment method, 3-Cancel Booking, 4- Provide Feedback");
+
+        Scanner sc = new Scanner(System.in);
+        int choice = sc.nextInt();
+        switch (choice) {
+            case 1: {//Book a ride
+            }
+            case 2://Feedback
+            {
+                System.out.println("Payment type: 1 - Cash, 2 - Card");
+                int type = Integer.parseInt(input.nextLine());
+                if (type == 1) {
+                    System.out.println("Payer Name:");
+                    String pn = input.nextLine();
+                    System.out.println("Payer Amount");
+                    double pa = Double.parseDouble(input.nextLine());
+                    CashPayment cash = new CashPayment(pn, pa);
+                    cash.setupPayment();
+                    cash.processPayment();
+                    cash.printReceipt();
+                    continue;
+                    //  feedbackArrayList.add(fb);
+                } else if (type == 2) {
+                    System.out.println("Payer Name:");
+                    String pn = input.nextLine();
+                    System.out.println("Payer Amount");
+                    double pa = Double.parseDouble(input.nextLine());
+                    System.out.println("CC Number:");
+                    String ccno = input.nextLine();
+                    System.out.println("CC Secure code:");
+                    String ccsc = input.nextLine();
+                    CreditCardPayment cc = new CreditCardPayment(pn, pa, ccno, ccsc);
+                    cc.setupPayment();
+                    cc.processPayment();
+                    cc.printReceipt();
+                    continue;
+                    //  feedbackArrayList.add(fb);
+                }
+            }
+            case 3://Cancel booking
+            {
+
+            }
+            case 4://Feedback
+            {
+                System.out.println("Feedback type: 1 - For Driver, 2 - For Pricing, 3 - For overall service");
+                int type = Integer.parseInt(input.nextLine());
+                System.out.println("Feedback Content:");
+                String content = input.nextLine();
+                System.out.println("Feedback Rating:");
+                int rating = Integer.parseInt(input.nextLine());
+                if (type == 1) {
+                    DriverFeedback fb = new DriverFeedback(content, rating);
+                    fb.provideFeedback();
+                    // feedbackArrayList.add(fb);
+                    continue;
+                } else if (type == 2) {
+                    PricingFeedback fb = new PricingFeedback(content, rating);
+                    fb.provideFeedback();
+                    // feedbackArrayList.add(fb);
+                    continue;
+                } else if (type == 3) {
+                    ServiceFeedback fb = new ServiceFeedback(content, rating);
+                    fb.provideFeedback();
+                    // feedbackArrayList.add(fb);
+                    continue;
+                } else {
+                    System.out.println("Invalid Input");
+                    break;
+                }
+            }
+
+        }
+    } */    /* ################Sandesh####################*/
 //        }
 
        /* Driver mainDriver=new Driver();
