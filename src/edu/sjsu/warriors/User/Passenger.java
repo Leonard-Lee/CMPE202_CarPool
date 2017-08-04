@@ -1,4 +1,4 @@
-package edu.sjsu.warriors;
+package edu.sjsu.warriors.User;
 
 public class Passenger extends User {
     private NormalBookProxy normalBookProxy;
