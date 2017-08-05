@@ -123,22 +123,18 @@ public class CarPoolSystem {
         //System.out.println("Enter your Role: 1-Driver, 2-Passenger 3-admin");
         //int role_type = Integer.parseInt(input.nextLine());
         if(loginUser.getRole().equals("Driver")) {
-            System.out.println("Please enter Driver's Name:");
-            String dName = input.nextLine();
-            System.out.println("Please enter Phone Number:");
-            String dPhone = input.nextLine();
-            System.out.println("Please enter email:");
-            String dEmail = input.nextLine();
             System.out.println("Please enter license#:");
             String license = input.nextLine();
             System.out.println("Please enter insurance#:");
             String insurance = input.nextLine();
-            Driver driver = new Driver(dName, dPhone, dEmail, license, insurance);
+            Driver tmpDriver = (Driver)loginUser;
+            tmpDriver.set_insurance(insurance);
+            tmpDriver.set_license(license);
             System.out.println("-------------------------------------------------------------");
             printOverallReport(admin.getDrivers(), vehiclesList);
 
             // create vehicle
-            System.out.println("\n\n\n Enter 1 - personal owned, 2 - company owned");
+            System.out.println("\n\n\n Enter 1 - company owned, 2 - personal owned");
             int owner_type = Integer.parseInt(input.nextLine());
             System.out.println("Vehicle Type: 1 - Compact, 2- Van");
             int vehicle_type = Integer.parseInt(input.nextLine());
@@ -158,10 +154,10 @@ public class CarPoolSystem {
                 }
                 String[] dList = new String[admin.getDrivers().size()];
                 for (int i = 0; i < admin.getDrivers().size(); i++) {
-                    dList[i] = admin.getDrivers().get(i).get_name();
+                    dList[i] = admin.getDrivers().get(i).getUserID();
                 }
                 int dIndex = getOption("Which Driver will make this request?", dList);
-                ownership = new PersonalOwnedVehicle(admin.getDrivers().get(dIndex).get_name());
+                ownership = new PersonalOwnedVehicle(admin.getDrivers().get(dIndex - 11).getUserID());
             } else {
                 ownership = new CompanyOwnedVehicle("CMPE202");
             }

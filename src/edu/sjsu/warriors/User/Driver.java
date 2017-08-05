@@ -44,6 +44,14 @@ public class Driver extends User {
         admin.addDriver(this);
     }
 
+    public void set_license(String _license) {
+        this._license = _license;
+    }
+
+    public void set_insurance(String _insurance) {
+        this._insurance = _insurance;
+    }
+
     public String get_license() {
         return this._license;
     }
