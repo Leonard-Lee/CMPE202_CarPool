@@ -172,12 +172,12 @@ public  class Admin implements AdminProxy {
         notifyAllObservers();
     }
 
-    public void attach(User observer){
-        observers.add(observer);
+    public void attach(Driver observer){
+        drivers.add(observer);
     }
 
     public void notifyAllObservers(){
-        for (User observer : observers) {
+        for (User observer : drivers) {
             observer.notifyusers();
         }
     }
