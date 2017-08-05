@@ -36,8 +36,8 @@ public abstract class User {
         this._latitude = latitude;
     }
 
-    public abstract void signup();
-    public abstract void login();
+    public abstract boolean signup();
+    public abstract User login();
 
 
     User() {
