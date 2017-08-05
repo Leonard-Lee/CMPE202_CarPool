@@ -3,16 +3,20 @@ package edu.sjsu.warriors.User;
 public class Passenger extends User {
     private NormalBookProxy normalBookProxy;
 
-    public void signup() {
+    public boolean signup() {
         _AAA.SignUp(this);
         System.out.println("Singup complete for PASSENGER:" + this.getUserID());
+        return true;
     }
 
-    public void login() {
-        if (_AAA.SignIn(this._userID, this._pwd)) {
+    public User login() {
+        User passenger = _AAA.SignIn(this._userID, this._pwd);
+        if (passenger != null) {
             System.out.println("SingIn Successfully for PASSENGER:" + this.getUserID());
+            return passenger;
         } else {
             System.out.println("SingIn FAIL for PASSENGER:" + this.getUserID());
+            return null;
         }
     }
 

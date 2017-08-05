@@ -8,7 +8,17 @@ import edu.sjsu.warriors.Order.Order;
 
 public  class Admin implements AdminProxy {
     private static Admin ourInstance;
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     private List<Order> orders;
+
+    public List<Driver> getDrivers() {
+        return drivers;
+    }
+
     private List<Driver> drivers;
     private int state;
 

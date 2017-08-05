@@ -38,7 +38,12 @@ public class AAA {
         return true;
     }
 
-    public boolean SignIn(String userID, String pwd) {
-        return (_accountMap.containsKey(userID) && _accountMap.get(userID).getPwd().equals(pwd));
+    public User SignIn(String userID, String pwd) {
+
+        if (_accountMap.containsKey(userID) && _accountMap.get(userID).getPwd().equals(pwd)) {
+            return _accountMap.get(userID);
+        } else {
+            return null;
+        }
     }
 }

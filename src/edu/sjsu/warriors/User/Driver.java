@@ -51,16 +51,20 @@ public class Driver extends User {
         return this._insurance;
     }
 
-    public void signup() {
+    public boolean signup() {
         _AAA.SignUp(this);
         System.out.println("Singup complete for Driver:" + this.getUserID());
+        return true;
     }
 
-    public void login() {
-        if (_AAA.SignIn(this._userID, this._pwd)) {
+    public User login() {
+        User driver = _AAA.SignIn(this._userID, this._pwd);
+        if ( driver != null) {
             System.out.println("SingIn Successfully for Driver:" + this.getUserID());
+            return driver;
         } else {
             System.out.println("SingIn FAIL for Driver:" + this.getUserID());
+            return null;
         }
     }
 
