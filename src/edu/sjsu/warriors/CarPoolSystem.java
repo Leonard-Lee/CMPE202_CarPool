@@ -157,7 +157,7 @@ public class CarPoolSystem {
                     dList[i] = admin.getDrivers().get(i).getUserID();
                 }
                 int dIndex = getOption("Which Driver will make this request?", dList);
-                ownership = new PersonalOwnedVehicle(admin.getDrivers().get(dIndex - 11).getUserID());
+                ownership = new PersonalOwnedVehicle(admin.getDrivers().get(dIndex - 1).getUserID());
             } else {
                 ownership = new CompanyOwnedVehicle("CMPE202");
             }
