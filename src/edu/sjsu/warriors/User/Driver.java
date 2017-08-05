@@ -6,6 +6,7 @@ public class Driver extends User {
     private boolean _isAvaiable;
     private String _license;
     private String _insurance;
+    private Admin admin = Admin.getInstance();
 
     public Driver() {
         super();
@@ -18,7 +19,6 @@ public class Driver extends User {
         _pwd = pwd;
         _isAvaiable = true;
 
-        Admin admin = Admin.getInstance();
         admin.addDriver(this);
     }
 
@@ -30,7 +30,7 @@ public class Driver extends User {
         this._isAvaiable = avaiable;
     }
 
-    Admin admin = Admin.getInstance();
+
     //Constructor
     public Driver(String name, String phoneNumber, String email, String license, String insurance) {
         super();
@@ -41,6 +41,7 @@ public class Driver extends User {
         this._license = license;
         this._insurance = insurance;
         this.admin.attach(this);
+        admin.addDriver(this);
     }
 
     public String get_license() {
